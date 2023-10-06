@@ -7,9 +7,9 @@
                     rel="noopener noreferrer"
                     target="_blank"
                 >
-                    <p>
+                    <h2 class="grid flex-1 text-base font-semibold leading-6 text-gray-950 dark:text-white">
                         Larapanel
-                    </p>
+                    </h2>
                 </a>
 
                 <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
