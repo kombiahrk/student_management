@@ -8,6 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Filament\\Resources\\RoleResource' => $baseDir . '/app/Filament/Resources/RoleResource.php',
+    'App\\Filament\\Resources\\RoleResource\\Pages\\CreateRole' => $baseDir . '/app/Filament/Resources/RoleResource/Pages/CreateRole.php',
+    'App\\Filament\\Resources\\RoleResource\\Pages\\EditRole' => $baseDir . '/app/Filament/Resources/RoleResource/Pages/EditRole.php',
+    'App\\Filament\\Resources\\RoleResource\\Pages\\ListRoles' => $baseDir . '/app/Filament/Resources/RoleResource/Pages/ListRoles.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
