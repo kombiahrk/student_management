@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,11 +21,41 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
         ]);
-        User::factory()->create([
-            'name' => 'Text',
-            'email' => 'text@example.com',
+
+        $testuser = User::factory()->create([
+            'name' => 'Test',
+            'email' => 'test@example.com',
         ]);
+
         $role = Role::create(['name' => 'Admin']);
+
+        $testrole = Role::create(['name' => 'test']);
+
+        Permission::create(['name' => 'View Dashboard']);
+
+        $testuser->assignRole($testrole);
+
         $user->assignRole($role);
+
+        $role->givePermissionTo('View Dashboard');
+
+        $testuser->assignRole($testrole);
+
+        $testrole->givePermissionTo('View Dashboard');
+
+        Permission::create(['name' => 'Create User']);
+        Permission::create(['name' => 'Update User']);
+        Permission::create(['name' => 'View User']);
+        Permission::create(['name' => 'Delete User']);
+
+        Permission::create(['name' => 'Create Role']);
+        Permission::create(['name' => 'Update Role']);
+        Permission::create(['name' => 'View Role']);
+        Permission::create(['name' => 'Delete Role']);
+
+        Permission::create(['name' => 'Create Permission']);
+        Permission::create(['name' => 'Update Permission']);
+        Permission::create(['name' => 'View Permission']);
+        Permission::create(['name' => 'Delete Permission']);
     }
 }
