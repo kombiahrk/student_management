@@ -22,9 +22,9 @@ When creating your resource, you may now use --generate:
 
     php artisan make:filament-resource Demo --generate
 
-if creating your resource with permissions (CRUD)
+if creating your resource with permissions for (CRUD)
 
-    php artisan make:filament-resource-with-permissions Demo
+    php artisan make:filament-resource-features Demo 
 
 if you want to delete the resouce
 
@@ -37,6 +37,10 @@ Creating Policy to assign the Permissions
 For Creating Model
     
     php artisan make:model Demo -m
+
+For Deleting created Model
+
+    php artisan delete:model Demo
 
 Form Builder - Fields
     
