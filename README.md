@@ -20,6 +20,10 @@ The doctrine/dbal package is required to use this functionality:
 
 When creating your resource, you may now use --generate:
 
+    php artisan cache:forget spatie.permission.cache 
+
+    php artisan cache:clear
+
     php artisan make:filament-resource Demo --generate
 
 if creating your resource with permissions for (CRUD)

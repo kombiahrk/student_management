@@ -42,12 +42,30 @@ class DeleteFilamentResource extends Command
                 File::delete($resourceRegistrationFile);
             }
 
+            // Delete the associated policy file
+            $this->deletePolicyFile($resourceName);
+
             // Delete permissions from the database
             $this->deletePermissions($resourceName);
 
             $this->info("Filament resource '{$resourceName}' deleted successfully.");
         } else {
             $this->error("Filament resource '{$resourceName}' not found.");
+        }
+    }
+
+    protected function deletePolicyFile($resourceName)
+    {
+
+        $resourceNameWithoutSuffix = preg_replace('/Resource$/', '', $resourceName);
+
+        $policyFileName = $resourceNameWithoutSuffix . 'Policy';
+
+        $policyFilePath = app_path("Policies/{$policyFileName}.php");
+
+        if (File::exists($policyFilePath)) {
+            File::delete($policyFilePath);
+            $this->info("Policy file '{$policyFileName}' deleted successfully.");
         }
     }
 

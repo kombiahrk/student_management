@@ -2,9 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Permission;
+
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class PermissionPolicy
 {
@@ -71,16 +70,24 @@ class PermissionPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Permission $permission)
+    public function restore(User $user)
     {
-        //
+        if($user->hasPermissionTo('Restore Permission'))
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Permission $permission)
+    public function forceDelete(User $user)
     {
-        //
+        if($user->hasPermissionTo('ForceDelete Permission'))
+        {
+            return true;
+        }
+        return false;
     }
 }

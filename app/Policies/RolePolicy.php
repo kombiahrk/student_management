@@ -2,9 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Role;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class RolePolicy
 {
@@ -71,16 +69,24 @@ class RolePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Role $role)
+    public function restore(User $user)
     {
-        //
+        if($user->hasPermissionTo('Restore Role'))
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Role $role)
+    public function forceDelete(User $user)
     {
-        //
+        if($user->hasPermissionTo('ForceDelete Role'))
+        {
+            return true;
+        }
+        return false;
     }
 }
