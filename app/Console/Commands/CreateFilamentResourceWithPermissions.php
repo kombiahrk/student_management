@@ -71,7 +71,7 @@ class CreateFilamentResourceWithPermissions extends Command
         // Use the $name variable to determine the resource name
         // For example, you can create 'view', 'create', 'edit', 'delete' permissions
 
-        $crudPermissions = ['View ', 'Create ', 'Update ', 'Delete '];
+        $crudPermissions = ['View ', 'List ', 'Create ', 'Update ', 'Delete ', 'Restore ', 'ForceDelete '];
 
         foreach ($crudPermissions as $permission) {
 

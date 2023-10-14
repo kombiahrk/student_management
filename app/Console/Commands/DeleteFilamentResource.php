@@ -91,12 +91,12 @@ class DeleteFilamentResource extends Command
         // Delete permissions from the database
         $permissionsToDelete = [
             "View {$resourceNameWithoutSuffix}",
-            // "List {$resourceNameWithoutSuffix}",
+            "List {$resourceNameWithoutSuffix}",
             "Create {$resourceNameWithoutSuffix}",
             "Update {$resourceNameWithoutSuffix}",
             "Delete {$resourceNameWithoutSuffix}",
-            // "Restore {$resourceNameWithoutSuffix}",
-            // "ForceDelete {$resourceNameWithoutSuffix}",
+            "Restore {$resourceNameWithoutSuffix}",
+            "ForceDelete {$resourceNameWithoutSuffix}",
         ];
 
         Permission::whereIn('name', $permissionsToDelete)->delete();
