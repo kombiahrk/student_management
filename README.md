@@ -49,9 +49,9 @@ if you want to delete the resouce will delete the corresponding model with migra
 
 
 
-For Deleting created Model
+<!-- For Deleting created Model
 
-    php artisan delete:model Demo
+    php artisan delete:model Demo -->
 
 Form Builder - Fields
     
