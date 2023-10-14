@@ -26,6 +26,13 @@ class CreateFilamentResourceWithPermissions extends Command
      */
     public function handle()
     {
+
+        // Clear the Spatie Laravel Permission cache
+        $this->call('cache:forget', ['key' => 'spatie.permission.cache']);
+
+        // Clear the Laravel application cache
+        $this->call('cache:clear');
+
         $name = $this->argument('name');
         $generate = $this->option('generate');
         $softdeletes = $this->option('soft-deletes');
@@ -50,6 +57,12 @@ class CreateFilamentResourceWithPermissions extends Command
             $this->createPermissions($name);
         }
 
+        // Generate the policy file
+        $this->call('make:policy', [
+            'name' => $name . 'Policy', // Adjust the policy name as needed
+            '--model' => $name,
+        ]);
+
     }
 
     protected function createPermissions($name)
@@ -58,7 +71,7 @@ class CreateFilamentResourceWithPermissions extends Command
         // Use the $name variable to determine the resource name
         // For example, you can create 'view', 'create', 'edit', 'delete' permissions
 
-        $crudPermissions = ['View ', 'Create ', 'Update ', 'Delete '];
+        $crudPermissions = ['View ', 'List ', 'Create ', 'Update ', 'Delete ', 'Restore ', 'ForceDelete '];
 
         foreach ($crudPermissions as $permission) {
 

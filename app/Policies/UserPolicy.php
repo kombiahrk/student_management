@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -12,7 +11,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        if($user->hasPermissionTo('View User'))
+        if($user->hasPermissionTo('List User'))
         {
             return true;
         }
@@ -70,16 +69,24 @@ class UserPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user)
     {
-        //
+        if($user->hasPermissionTo('Restore User'))
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user)
     {
-        //
+        if($user->hasPermissionTo('ForceDelete User'))
+        {
+            return true;
+        }
+        return false;
     }
 }

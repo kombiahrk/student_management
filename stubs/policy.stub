@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Policies;
+namespace {{ namespace }};
 
+use {{ namespacedUserModel }};
 
-use App\Models\User;
-
-class PermissionPolicy
+class {{ class }}
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user)
+    public function viewAny({{ user }} $user)
     {
-        if($user->hasPermissionTo('List Permission'))
+        if($user->hasPermissionTo('List {{model}}'))
         {
             return true;
         }
@@ -22,9 +21,9 @@ class PermissionPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user)
+    public function view({{ user }} $user)
     {
-        if($user->hasPermissionTo('View Permission'))
+        if($user->hasPermissionTo('View {{model}}'))
         {
             return true;
         }
@@ -34,9 +33,9 @@ class PermissionPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user)
+    public function create({{ user }} $user)
     {
-        if($user->hasPermissionTo('Create Permission'))
+        if($user->hasPermissionTo('Create {{model}}'))
         {
             return true;
         }
@@ -46,9 +45,9 @@ class PermissionPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user)
+    public function update({{ user }} $user)
     {
-        if($user->hasPermissionTo('Update Permission'))
+        if($user->hasPermissionTo('Update {{model}}'))
         {
             return true;
         }
@@ -58,9 +57,9 @@ class PermissionPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user)
+    public function delete({{ user }} $user)
     {
-        if($user->hasPermissionTo('Delete Permission'))
+        if($user->hasPermissionTo('Delete {{model}}'))
         {
             return true;
         }
@@ -70,9 +69,9 @@ class PermissionPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user)
+    public function restore({{ user }} $user): bool
     {
-        if($user->hasPermissionTo('Restore Permission'))
+        if($user->hasPermissionTo('Restore {{model}}'))
         {
             return true;
         }
@@ -82,9 +81,9 @@ class PermissionPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user)
+    public function forceDelete({{ user }} $user)
     {
-        if($user->hasPermissionTo('ForceDelete Permission'))
+        if($user->hasPermissionTo('ForceDelete {{model}}'))
         {
             return true;
         }

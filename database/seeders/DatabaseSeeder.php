@@ -44,18 +44,27 @@ class DatabaseSeeder extends Seeder
         $testrole->givePermissionTo('View Dashboard');
 
         Permission::create(['name' => 'Create User']);
+        Permission::create(['name' => 'List User']);
         Permission::create(['name' => 'Update User']);
         Permission::create(['name' => 'View User']);
         Permission::create(['name' => 'Delete User']);
+        Permission::create(['name' => 'Restore User']);
+        Permission::create(['name' => 'ForceDelete User']);
 
         Permission::create(['name' => 'Create Role']);
+        Permission::create(['name' => 'List Role']);
         Permission::create(['name' => 'Update Role']);
         Permission::create(['name' => 'View Role']);
         Permission::create(['name' => 'Delete Role']);
+        Permission::create(['name' => 'Restore Role']);
+        Permission::create(['name' => 'ForceDelete Role']);
 
         Permission::create(['name' => 'Create Permission']);
+        Permission::create(['name' => 'List Permission']);
         Permission::create(['name' => 'Update Permission']);
         Permission::create(['name' => 'View Permission']);
         Permission::create(['name' => 'Delete Permission']);
+        Permission::create(['name' => 'Restore Permission']);
+        Permission::create(['name' => 'ForceDelete Permission']);
     }
 }

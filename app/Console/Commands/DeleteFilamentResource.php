@@ -42,13 +42,46 @@ class DeleteFilamentResource extends Command
                 File::delete($resourceRegistrationFile);
             }
 
+            // Delete the associated policy file
+            $this->deletePolicyFile($resourceName);
+
             // Delete permissions from the database
             $this->deletePermissions($resourceName);
+
+            // Delete permissions from the database
+            $this->deleteModelfile($resourceName);
 
             $this->info("Filament resource '{$resourceName}' deleted successfully.");
         } else {
             $this->error("Filament resource '{$resourceName}' not found.");
         }
+    }
+
+    protected function deleteModelfile($resourceName)
+    {
+        $resourceNameWithoutSuffix = preg_replace('/Resource$/', '', $resourceName);
+
+        // Delete the model file with migrations
+        $this->call('delete:model', [
+            'model' => $resourceNameWithoutSuffix,
+        ]);
+
+    }
+
+    protected function deletePolicyFile($resourceName)
+    {
+
+        $resourceNameWithoutSuffix = preg_replace('/Resource$/', '', $resourceName);
+
+        $policyFileName = $resourceNameWithoutSuffix . 'Policy';
+
+        $policyFilePath = app_path("Policies/{$policyFileName}.php");
+
+        if (File::exists($policyFilePath)) {
+            File::delete($policyFilePath);
+            $this->info("Policy file '{$policyFileName}' deleted successfully.");
+        }
+
     }
 
     protected function deletePermissions($resourceName)
@@ -58,9 +91,12 @@ class DeleteFilamentResource extends Command
         // Delete permissions from the database
         $permissionsToDelete = [
             "View {$resourceNameWithoutSuffix}",
+            "List {$resourceNameWithoutSuffix}",
             "Create {$resourceNameWithoutSuffix}",
             "Update {$resourceNameWithoutSuffix}",
             "Delete {$resourceNameWithoutSuffix}",
+            "Restore {$resourceNameWithoutSuffix}",
+            "ForceDelete {$resourceNameWithoutSuffix}",
         ];
 
         Permission::whereIn('name', $permissionsToDelete)->delete();
