@@ -67,6 +67,12 @@ class DeleteFilamentResource extends Command
             File::delete($policyFilePath);
             $this->info("Policy file '{$policyFileName}' deleted successfully.");
         }
+
+        // Delete the model file with migrations
+        $this->call('delete:model', [
+            'model' => $resourceNameWithoutSuffix,
+        ]);
+
     }
 
     protected function deletePermissions($resourceName)

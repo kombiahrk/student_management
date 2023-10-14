@@ -11,7 +11,7 @@ class RolePolicy
      */
     public function viewAny(User $user)
     {
-        if($user->hasPermissionTo('View Role'))
+        if($user->hasPermissionTo('List Role'))
         {
             return true;
         }

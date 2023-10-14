@@ -61,7 +61,6 @@ class CreateFilamentResourceWithPermissions extends Command
         $this->call('make:policy', [
             'name' => $name . 'Policy', // Adjust the policy name as needed
             '--model' => $name,
-            '--stub' => 'policy',
         ]);
 
     }
