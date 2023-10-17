@@ -15,11 +15,12 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\TrashedFilter;
+use Filament\Forms\Components\CheckboxList;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
-use Filament\Forms\Components\CheckboxList;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 
 class UserResource extends Resource
 {
@@ -116,7 +117,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ActivitylogRelationManager::class,
         ];
     }
 

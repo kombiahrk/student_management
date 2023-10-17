@@ -42,12 +42,12 @@ class ComposerStaticInitaa322c53454393ed775cfe4807d54a50
         'ebb446bb6d02e998480945fbbb73dc64' => __DIR__ . '/..' . '/filament/filament/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
-        '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
     );
@@ -121,6 +121,8 @@ class ComposerStaticInitaa322c53454393ed775cfe4807d54a50
         array (
             'RyanChandler\\BladeCaptureDirective\\Database\\Factories\\' => 54,
             'RyanChandler\\BladeCaptureDirective\\' => 35,
+            'Rmsramos\\Activitylog\\Database\\Factories\\' => 40,
+            'Rmsramos\\Activitylog\\' => 21,
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
         ),
@@ -428,6 +430,14 @@ class ComposerStaticInitaa322c53454393ed775cfe4807d54a50
         'RyanChandler\\BladeCaptureDirective\\' => 
         array (
             0 => __DIR__ . '/..' . '/ryangjchandler/blade-capture-directive/src',
+        ),
+        'Rmsramos\\Activitylog\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmsramos/activitylog/database/factories',
+        ),
+        'Rmsramos\\Activitylog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmsramos/activitylog/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -7575,6 +7585,12 @@ class ComposerStaticInitaa322c53454393ed775cfe4807d54a50
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'Rmsramos\\Activitylog\\ActivitylogPlugin' => __DIR__ . '/..' . '/rmsramos/activitylog/src/ActivitylogPlugin.php',
+        'Rmsramos\\Activitylog\\ActivitylogServiceProvider' => __DIR__ . '/..' . '/rmsramos/activitylog/src/ActivitylogServiceProvider.php',
+        'Rmsramos\\Activitylog\\RelationManagers\\ActivitylogRelationManager' => __DIR__ . '/..' . '/rmsramos/activitylog/src/RelationManagers/ActivitylogRelationManager.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource\\Pages\\ListActivitylog' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource/Pages/ListActivitylog.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource\\Pages\\ViewActivitylog' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource/Pages/ViewActivitylog.php',
         'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirective' => __DIR__ . '/..' . '/ryangjchandler/blade-capture-directive/src/BladeCaptureDirective.php',
         'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirectiveServiceProvider' => __DIR__ . '/..' . '/ryangjchandler/blade-capture-directive/src/BladeCaptureDirectiveServiceProvider.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',

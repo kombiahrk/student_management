@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd3861054c4b188683d7da17b91b58d01ba4305ea',
+        'reference' => '554e64cbb287eaf7e0eee984b1749587e7b8b919',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -553,7 +553,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd3861054c4b188683d7da17b91b58d01ba4305ea',
+            'reference' => '554e64cbb287eaf7e0eee984b1749587e7b8b919',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1087,6 +1087,15 @@
             'replaced' => array(
                 0 => '4.7.4',
             ),
+        ),
+        'rmsramos/activitylog' => array(
+            'pretty_version' => 'v0.1.3',
+            'version' => '0.1.3.0',
+            'reference' => '276e54e414bede0963c047721cad45370699055d',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rmsramos/activitylog',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'ryangjchandler/blade-capture-directive' => array(
             'pretty_version' => 'v0.3.0',

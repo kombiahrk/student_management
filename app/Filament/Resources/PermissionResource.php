@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PermissionResource\Pages;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use App\Filament\Resources\PermissionResource\RelationManagers;
+use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 
 class PermissionResource extends Resource
 {
@@ -76,7 +77,7 @@ class PermissionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ActivitylogRelationManager::class,
         ];
     }
 

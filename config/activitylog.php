@@ -49,4 +49,16 @@ return [
      * Laravel's database.default will be used instead.
      */
     'database_connection' => env('ACTIVITY_LOGGER_DB_CONNECTION'),
+
+    'resources' => [
+        'label'                     => 'Activity Log',
+        'plural_label'              => 'Activity Logs',
+        'navigation_group'          => 'Settings',
+        'navigation_icon'           => 'heroicon-o-shield-check',
+        'navigation_sort'           => 5,
+        'navigation_count_badge'    => false,
+        'resource'                  => \Rmsramos\Activitylog\Resources\ActivitylogResource::class,
+    ],
+
+    'datetime_format' => 'd/m/Y H:i:s',
 ];
