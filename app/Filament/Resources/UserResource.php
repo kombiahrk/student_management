@@ -19,6 +19,7 @@ use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
 use Filament\Forms\Components\CheckboxList;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class UserResource extends Resource
 {
@@ -94,7 +95,7 @@ class UserResource extends Resource
                     ->visible(auth()->user()->canViewTrashed())
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->iconButton(),
                 Tables\Actions\DeleteAction::make()->successNotificationTitle('User Deleted Successfully'),
                 Tables\Actions\ForceDeleteAction::make()->successNotificationTitle('User Deleted Permanently'),
                 Tables\Actions\RestoreAction::make()->successNotificationTitle('User Restored Successfully'),
@@ -105,6 +106,7 @@ class UserResource extends Resource
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
+                ExportBulkAction::make(),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),

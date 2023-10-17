@@ -16,6 +16,7 @@ use Filament\Forms\Components\CheckboxList;
 use App\Filament\Resources\RoleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RoleResource\RelationManagers;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class RoleResource extends Resource
 {
@@ -61,17 +62,20 @@ class RoleResource extends Resource
                     ->visible(auth()->user()->canViewTrashed())
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()->successNotificationTitle('Role Deleted Successfully'),
-                Tables\Actions\ForceDeleteAction::make()->successNotificationTitle('Role Deleted Permanently'),
-                Tables\Actions\RestoreAction::make()->successNotificationTitle('Role Restored Successfully'),
+                Tables\Actions\ActionGroup::make([ //ActionGroup to group all the actions
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make()->successNotificationTitle('Role Deleted Successfully'),
+                    Tables\Actions\ForceDeleteAction::make()->successNotificationTitle('Role Deleted Permanently'),
+                    Tables\Actions\RestoreAction::make()->successNotificationTitle('Role Restored Successfully'),
+                ])
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\BulkActionGroup::make([ //BulkActionGroup to group all the actions
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
+                ExportBulkAction::make(),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),

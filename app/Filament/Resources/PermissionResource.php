@@ -11,10 +11,11 @@ use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\TrashedFilter;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PermissionResource\Pages;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use App\Filament\Resources\PermissionResource\RelationManagers;
-use Filament\Tables\Filters\TrashedFilter;
 
 class PermissionResource extends Resource
 {
@@ -65,6 +66,7 @@ class PermissionResource extends Resource
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
+                ExportBulkAction::make(),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),

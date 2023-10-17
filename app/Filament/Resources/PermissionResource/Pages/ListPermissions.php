@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\PermissionResource\Pages;
 
-use App\Filament\Resources\PermissionResource;
 use Filament\Actions;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Filament\Resources\Pages\ListRecords;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use App\Filament\Resources\PermissionResource;
+use pxlrbt\FilamentExcel\Actions\Pages\ExportAction;
 
 class ListPermissions extends ListRecords
 {
@@ -14,6 +17,9 @@ class ListPermissions extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            // ExportAction::make()->exports([
+            //     ExcelExport::make()->askForFilename()->fromTable()
+            // ]),
         ];
     }
 }
