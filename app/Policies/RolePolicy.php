@@ -67,6 +67,18 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can bulk delete the model.
+     */
+    public function deleteAny(User $user)
+    {
+        if($user->hasPermissionTo('BulkDelete Role'))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user)
@@ -79,11 +91,35 @@ class RolePolicy
     }
 
     /**
+     * Determine whether the user can bulk restore the model.
+     */
+    public function restoreAny(User $user)
+    {
+        if($user->hasPermissionTo('BulkRestore Role'))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user)
     {
         if($user->hasPermissionTo('ForceDelete Role'))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine whether the user can permanently bulk forcedelete the model.
+     */
+    public function forceDeleteAny(User $user)
+    {
+        if($user->hasPermissionTo('BulkForceDelete Role'))
         {
             return true;
         }

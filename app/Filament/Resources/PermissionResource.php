@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PermissionResource\Pages;
 use App\Filament\Resources\PermissionResource\RelationManagers;
+use Filament\Tables\Filters\TrashedFilter;
 
 class PermissionResource extends Resource
 {
@@ -48,15 +49,21 @@ class PermissionResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                TrashedFilter::make()
+                    ->label('How to Display Records?')
+                    ->visible(auth()->user()->canViewTrashed())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()->successNotificationTitle('Permission Deleted Successfully'),
+                Tables\Actions\ForceDeleteAction::make()->successNotificationTitle('Permission Deleted Permanently'),
+                Tables\Actions\RestoreAction::make()->successNotificationTitle('Permission Restored Successfully'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ])
             ->emptyStateActions([
@@ -79,4 +86,5 @@ class PermissionResource extends Resource
             'edit' => Pages\EditPermission::route('/{record}/edit'),
         ];
     }
+
 }

@@ -95,8 +95,11 @@ class DeleteFilamentResource extends Command
             "Create {$resourceNameWithoutSuffix}",
             "Update {$resourceNameWithoutSuffix}",
             "Delete {$resourceNameWithoutSuffix}",
+            "BulkDelete {$resourceNameWithoutSuffix}",
             "Restore {$resourceNameWithoutSuffix}",
+            "BulkRestore {$resourceNameWithoutSuffix}",
             "ForceDelete {$resourceNameWithoutSuffix}",
+            "BulkForceDelete {$resourceNameWithoutSuffix}",
         ];
 
         Permission::whereIn('name', $permissionsToDelete)->delete();

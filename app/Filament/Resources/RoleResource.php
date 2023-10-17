@@ -11,10 +11,11 @@ use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\TrashedFilter;
+use Filament\Forms\Components\CheckboxList;
 use App\Filament\Resources\RoleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RoleResource\RelationManagers;
-use Filament\Forms\Components\CheckboxList;
 
 class RoleResource extends Resource
 {
@@ -55,15 +56,21 @@ class RoleResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                TrashedFilter::make()
+                    ->label('How to Display Records?')
+                    ->visible(auth()->user()->canViewTrashed())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()->successNotificationTitle('Role Deleted Successfully'),
+                Tables\Actions\ForceDeleteAction::make()->successNotificationTitle('Role Deleted Permanently'),
+                Tables\Actions\RestoreAction::make()->successNotificationTitle('Role Restored Successfully'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ])
             ->emptyStateActions([
@@ -89,7 +96,8 @@ class RoleResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('name','!=','Admin');
+        return parent::getEloquentQuery()
+            ->where('name','!=','Admin');
     }
 
 }

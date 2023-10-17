@@ -14,9 +14,11 @@ use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Filters\TrashedFilter;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
+use Filament\Forms\Components\CheckboxList;
 
 class UserResource extends Resource
 {
@@ -54,10 +56,9 @@ class UserResource extends Resource
                             ->multiple()
                             ->relationship('roles','name')
                             ->preload(),
-                        Select::make('permissions')
-                            ->multiple()
+                        CheckboxList::make('permissions')
                             ->relationship('permissions','name')
-                            ->preload(),
+                            ->columns(4)->columnSpanFull(),
                         // DateTimePicker::make('email_verified_at'),
                     ])
                     // ->collapsible() // or ->collapsed()
@@ -88,15 +89,21 @@ class UserResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TrashedFilter::make()
+                    ->label('How to Display Records?')
+                    ->visible(auth()->user()->canViewTrashed())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()->successNotificationTitle('User Deleted Successfully'),
+                Tables\Actions\ForceDeleteAction::make()->successNotificationTitle('User Deleted Permanently'),
+                Tables\Actions\RestoreAction::make()->successNotificationTitle('User Restored Successfully'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ])
             ->emptyStateActions([
@@ -119,4 +126,12 @@ class UserResource extends Resource
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
+
+    // public static function getEloquentQuery(): Builder
+    // {
+    //     return parent::getEloquentQuery()
+    //         ->withoutGlobalScopes([
+    //             SoftDeletingScope::class,
+    //         ]);
+    // }
 }

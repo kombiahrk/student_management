@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $user = User::factory()->create([
+        $adminuser = User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
         ]);
@@ -27,17 +27,19 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
+        $adminrole = Role::create(['name' => 'Admin']);
 
         $testrole = Role::create(['name' => 'test']);
 
         Permission::create(['name' => 'View Dashboard']);
+        Permission::create(['name' => 'View Deleted']);
 
         $testuser->assignRole($testrole);
 
-        $user->assignRole($role);
+        $adminuser->assignRole($adminrole);
 
-        $role->givePermissionTo('View Dashboard');
+        $adminrole->givePermissionTo('View Dashboard');
+        $adminrole->givePermissionTo('View Deleted');
 
         $testuser->assignRole($testrole);
 
@@ -48,23 +50,32 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'Update User']);
         Permission::create(['name' => 'View User']);
         Permission::create(['name' => 'Delete User']);
+        Permission::create(['name' => 'BulkDelete User']);
         Permission::create(['name' => 'Restore User']);
+        Permission::create(['name' => 'BulkRestore User']);
         Permission::create(['name' => 'ForceDelete User']);
+        Permission::create(['name' => 'BulkForceDelete User']);
 
         Permission::create(['name' => 'Create Role']);
         Permission::create(['name' => 'List Role']);
         Permission::create(['name' => 'Update Role']);
         Permission::create(['name' => 'View Role']);
         Permission::create(['name' => 'Delete Role']);
+        Permission::create(['name' => 'BulkDelete Role']);
         Permission::create(['name' => 'Restore Role']);
+        Permission::create(['name' => 'BulkRestore Role']);
         Permission::create(['name' => 'ForceDelete Role']);
+        Permission::create(['name' => 'BulkForceDelete Role']);
 
         Permission::create(['name' => 'Create Permission']);
         Permission::create(['name' => 'List Permission']);
         Permission::create(['name' => 'Update Permission']);
         Permission::create(['name' => 'View Permission']);
         Permission::create(['name' => 'Delete Permission']);
+        Permission::create(['name' => 'BulkDelete Permission']);
         Permission::create(['name' => 'Restore Permission']);
+        Permission::create(['name' => 'BulkRestore Permission']);
         Permission::create(['name' => 'ForceDelete Permission']);
+        Permission::create(['name' => 'BulkForceDelete Permission']);
     }
 }

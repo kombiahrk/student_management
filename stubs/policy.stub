@@ -67,6 +67,18 @@ class {{ class }}
     }
 
     /**
+     * Determine whether the user can bulk delete the model.
+     */
+    public function deleteAny({{ user }} $user)
+    {
+        if($user->hasPermissionTo('BulkDelete {{model}}'))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore({{ user }} $user): bool
@@ -79,11 +91,35 @@ class {{ class }}
     }
 
     /**
+     * Determine whether the user can bulk restore the model.
+     */
+    public function restoreAny({{ user }} $user): bool
+    {
+        if($user->hasPermissionTo('BulkRestore {{model}}'))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete({{ user }} $user)
     {
         if($user->hasPermissionTo('ForceDelete {{model}}'))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny({{ user }} $user)
+    {
+        if($user->hasPermissionTo('BulkForceDelete {{model}}'))
         {
             return true;
         }
