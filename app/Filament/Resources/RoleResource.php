@@ -8,13 +8,13 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\RoleResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RoleResource\RelationManagers;
+use Filament\Forms\Components\CheckboxList;
 
 class RoleResource extends Resource
 {
@@ -35,11 +35,13 @@ class RoleResource extends Resource
                     ->unique(ignoreRecord: true)
                     ->minLength(3)
                     ->maxLength(25),
-                Select::make('permissions')
-                    ->multiple()
+                CheckboxList::make('permissions')
                     ->relationship('permissions','name')
-                    ->preload(),
-            ]);
+                    ->columns(4)
+                    ->bulkToggleable()
+                    ->searchable()
+                    ->noSearchResultsMessage('No Permissions found.'),
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
