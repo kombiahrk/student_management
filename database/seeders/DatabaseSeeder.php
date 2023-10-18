@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
 
         $adminrole->givePermissionTo('View Dashboard');
         $adminrole->givePermissionTo('View Deleted');
+        $adminrole->givePermissionTo('View ActivityLogs');
 
         $testuser->assignRole($testrole);
 
