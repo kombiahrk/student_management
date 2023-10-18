@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\ActivitylogResource;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
@@ -54,7 +55,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->plugins([
-                ActivitylogPlugin::make(),
+                ActivitylogPlugin::make()->resource(ActivitylogResource::class),
             ])
             ->authMiddleware([
                 Authenticate::class,

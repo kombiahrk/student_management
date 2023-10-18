@@ -20,7 +20,7 @@ use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
-use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
+use App\Filament\Resources\ActivitylogResource\RelationManagers\ActivitiesRelationManager;
 
 class UserResource extends Resource
 {
@@ -117,7 +117,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ActivitylogRelationManager::class,
+            ActivitiesRelationManager::class,
         ];
     }
 
@@ -130,11 +130,11 @@ class UserResource extends Resource
         ];
     }
 
-    // public static function getEloquentQuery(): Builder
-    // {
-    //     return parent::getEloquentQuery()
-    //         ->withoutGlobalScopes([
-    //             SoftDeletingScope::class,
-    //         ]);
-    // }
+//     public static function getEloquentQuery(): Builder
+//     {
+//         return parent::getEloquentQuery()
+//             ->withoutGlobalScopes([
+//                 SoftDeletingScope::class,
+//             ]);
+//     }
 }

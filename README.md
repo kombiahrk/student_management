@@ -35,7 +35,7 @@ When creating your resource with permissions for (CRUD), you may now use --gener
 
     php artisan cache:clear -->
 
-    php artisan make:filament-resource-features Demo --generate
+    -features Demo --generate
 
 Step : 4
 

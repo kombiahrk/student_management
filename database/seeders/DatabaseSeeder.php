@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
 
         Permission::create(['name' => 'View Dashboard']);
         Permission::create(['name' => 'View Deleted']);
+        Permission::create(['name' => 'View ActivityLogs']);
 
         $testuser->assignRole($testrole);
 

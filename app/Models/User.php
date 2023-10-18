@@ -59,6 +59,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasPermissionTo('View Deleted');
     }
 
+    public function canViewActivityLogs(): bool
+    {
+        return $this->hasPermissionTo('View ActivityLogs');
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
