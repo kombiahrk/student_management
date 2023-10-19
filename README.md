@@ -35,7 +35,7 @@ When creating your resource with permissions for (CRUD), you may now use --gener
 
     php artisan cache:clear -->
 
-    -features Demo --generate
+    php artisan make:filament-resource-features Demo --generate
 
 Step : 4
 
@@ -88,3 +88,6 @@ Table Builder - Columns
         Toggle column
         Text input column
         Checkbox column
+
+
+

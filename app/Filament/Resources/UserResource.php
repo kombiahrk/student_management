@@ -13,6 +13,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Forms\Components\CheckboxList;
@@ -79,8 +80,7 @@ class UserResource extends Resource
                     ->searchable(),
                 TextColumn::make('email_verified_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -97,7 +97,13 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->iconButton(),
-                Tables\Actions\DeleteAction::make()->successNotificationTitle('User Deleted Successfully'),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('User Detail Deleted.')
+                            ->body('The User Deleted Successfully')
+                        ),
                 Tables\Actions\ForceDeleteAction::make()->successNotificationTitle('User Deleted Permanently'),
                 Tables\Actions\RestoreAction::make()->successNotificationTitle('User Restored Successfully'),
             ])

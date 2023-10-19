@@ -6,7 +6,10 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Database\Seeders\CitiesTableSeeder;
+use Database\Seeders\StatesTableSeeder;
 use Spatie\Permission\Models\Permission;
+use Database\Seeders\CountriesTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -79,5 +82,9 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'BulkRestore Permission']);
         Permission::create(['name' => 'ForceDelete Permission']);
         Permission::create(['name' => 'BulkForceDelete Permission']);
+
+        $this->call(CountriesTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
     }
 }
