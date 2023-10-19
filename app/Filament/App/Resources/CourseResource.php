@@ -7,6 +7,7 @@ use Filament\Tables;
 use App\Models\Course;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Facades\Filament;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +30,7 @@ class CourseResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return static::getModel()::WhereBelongsTo(Filament::getTenant())->count();
     }
 
     public static function getNavigationBadgeColor(): string|array|null

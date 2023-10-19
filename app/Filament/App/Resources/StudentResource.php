@@ -41,7 +41,7 @@ class StudentResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return static::getModel()::WhereBelongsTo(Filament::getTenant())->count();
     }
 
     public static function getNavigationBadgeColor(): string|array|null
