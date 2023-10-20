@@ -6,6 +6,7 @@ use Filament\Forms;
 use App\Models\City;
 use Filament\Tables;
 use App\Models\State;
+use App\Models\Course;
 use App\Models\Student;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -15,8 +16,10 @@ use Illuminate\Support\Carbon;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Illuminate\Support\Collection;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\Section;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Filters\SelectFilter;
@@ -25,9 +28,7 @@ use Filament\Infolists\Components\TextEntry;
 use App\Filament\Resources\StudentResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\StudentResource\RelationManagers;
-use App\Models\Course;
 use Filament\Infolists\Components\Section as ComponentsSection;
-use Illuminate\Database\Eloquent\Model;
 
 class StudentResource extends Resource
 {
@@ -230,6 +231,11 @@ class StudentResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Action::make('Pdf')
+                    ->icon('heroicon-o-document')
+                    ->color('success')
+                    ->url(fn(Student $record)=> route('student.pdf.download',$record))
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

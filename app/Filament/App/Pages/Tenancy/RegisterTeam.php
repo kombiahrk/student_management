@@ -3,8 +3,10 @@
 namespace App\Filament\App\Pages\Tenancy;
 
 use App\Models\Team;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 use Filament\Forms\Form;
+use Illuminate\Support\Str;
+use Filament\Forms\Components\TextInput;
 use Filament\Pages\Tenancy\RegisterTenant;
 
 class RegisterTeam extends RegisterTenant
@@ -18,8 +20,11 @@ class RegisterTeam extends RegisterTenant
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('slug'),
+                TextInput::make('name')
+                    ->required()
+                    ->live(debounce: '1000')
+                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                TextInput::make('slug')->hidden(),
             ]);
     }
 

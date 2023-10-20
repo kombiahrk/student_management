@@ -59,6 +59,10 @@ class UserResource extends Resource
                             ->multiple()
                             ->relationship('roles','name')
                             ->preload(),
+                            Select::make('teams')
+                            ->multiple()
+                            ->relationship('teams','name')
+                            ->preload(),
                         CheckboxList::make('permissions')
                             ->relationship('permissions','name')
                             ->columns(4)->columnSpanFull(),

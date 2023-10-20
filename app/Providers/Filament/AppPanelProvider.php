@@ -32,7 +32,7 @@ class AppPanelProvider extends PanelProvider
             ->path('')
             ->login()
             ->profile()
-            ->registration()
+            // ->registration()
             ->userMenuItems([
                 MenuItem::make()
                     ->label('Admin')
@@ -40,6 +40,8 @@ class AppPanelProvider extends PanelProvider
                     ->url('/admin')
                     ->visible(fn (): bool => auth()->user()->isAdmin())
             ])
+            ->sidebarCollapsibleOnDesktop(true)
+            ->maxContentWidth('full')
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
@@ -75,8 +77,8 @@ class AppPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->tenant(Team::class,ownershipRelationship:'team',slugAttribute:'slug')
-            ->tenantRegistration(RegisterTeam::class)
-            ->tenantProfile(EditTeamProfile::class);
+            ->tenant(Team::class,ownershipRelationship:'team',slugAttribute:'slug');
+            // ->tenantRegistration(RegisterTeam::class)
+            // ->tenantProfile(EditTeamProfile::class);
     }
 }

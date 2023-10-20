@@ -32,6 +32,11 @@ class Team extends Model
         return $this->hasMany(Course::class);
     }
 
+    public function machines(): HasMany
+    {
+        return $this->hasMany(Course::class);
+    }
+
     public function students(): HasMany
     {
         return $this->hasMany(Student::class);
